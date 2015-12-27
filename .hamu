@@ -1,0 +1,100 @@
+" Molokai theme
+let g:pymode_rope = 0
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" The bundles you install will be listed here
+Bundle 'klen/python-mode'
+Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-fugitive'
+Bundle 'kien/ctrlp.vim'
+Bundle 'vimux'
+Bundle 'tpope/vim-commentary'
+Bundle 'jedi-vim'
+Bundle 'tomasr/molokai'
+"Bundle 'bling/vim-airline'
+"Bundle 'msanders/snipmate.vim'
+Bundle 'SirVer/ultisnips'
+"Bundle 'honza/vim-snippets'
+Bundle 'musicbox.vim'
+
+filetype plugin indent on
+
+" The rest of your config follows here
+
+map <F2> :NERDTreeToggle<CR>
+
+" Powerline setup
+set guifont=DejaVu\ Sans\ Mono
+set laststatus=2
+
+" Documentation
+let g:pymode_doc = 1
+let g:pymode_doc_key = 'K'
+set term=xterm-256color
+
+let g:pymode_lint_checkers = ["pep8","pyflakes"]
+
+set noswapfile
+set nowritebackup
+set nobackup
+
+"fancier colors 
+if has ('gui_running')
+	    highlight Pmenu guibg=#cccccc gui=bold    
+    endif
+
+" Don't autofold code
+let g:pymode_folding = 0
+
+" Documentation
+let g:pymode_doc = 1
+let g:pymode_doc_key = 'K'
+
+" show line numbers
+set number
+
+" Change leader to a comma because the backslash is too far away
+" That means all \x commands turn into ,x
+" The mapleader has to be set before vundle starts loading all 
+" the plugins.
+let mapleader=","
+
+"isier moving of code blocks
+" Try to go into visual mode (v), thenselect several lines of code here and
+" then press ``>`` several times.
+vnoremap < <gv  " better indentation
+vnoremap > >gv  " better indentation
+
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+
+nnoremap <Leader>l :call NumberToggle()<cr>
+:au FocusLost * set number
+:au FocusGained * set relativenumber
+autocmd InsertEnter * set number
+autocmd InsertLeave * set relativenumber
+set relativenumber
+
+" center the cursor vertically
+:nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
+
+" Settings for jedi-vim
+" =====================
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#popup_on_dot = 0
+let g:jedi#popup_select_first = 0
+map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
