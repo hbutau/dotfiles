@@ -1,4 +1,4 @@
-" Molokai theme
+ "Molokai theme
 let g:pymode_rope = 0
 set nocompatible
 filetype off
@@ -21,19 +21,63 @@ Bundle 'tpope/vim-commentary'
 Bundle 'jedi-vim'
 Bundle 'tomasr/molokai'
 "Bundle 'bling/vim-airline'
-"Bundle 'msanders/snipmate.vim'
+Bundle 'msanders/snipmate.vim'
 Bundle 'SirVer/ultisnips'
 "Bundle 'honza/vim-snippets'
-Bundle 'musicbox.vim'
+"Bundle 'musicbox.vim'
+Bundle 'bling/vim-airline'
+Bundle 'flazz/vim-colorschemes'
+Bundle 'majutsushi/tagbar'
+Bundle 'tpope/vim-surround' 
+Bundle  'garbas/vim-snipmate'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim'
+Bundle 'honza/vim-snippets'
+"Bundle 'scrooloose/syntastic'               " Syntax checking Bundle for Vim
+"Bundle 'tpope/vim-commentary'               " Comment stuff out
+"Bundle 'mitsuhiko/vim-sparkup'              " Sparkup(XML/jinja/htlm-django/etc.) support
+"Bundle 'Rykka/riv.vim'                      " ReStructuredText Bundle
 
+"-------------------=== Python  ===-----------------------------
+"Bundle 'klen/python-mode'                   " Python mode (docs, refactor, lints...)
+"Bundle 'davidhalter/jedi-vim'               " Jedi-vim autocomplete Bundle
+"Bundle 'mitsuhiko/vim-jinja'                " Jinja support for vim
+"Bundle 'mitsuhiko/vim-python-combined'      " Combined Python 2/3 for Vim
+"Bundle 'hynek/vim-python-pep8-indent'       " PEP8 indent
+"Bundle 'jmcantrell/vim-virtualenv'          " Virtualenv support in VIM
+
+
+syntax enable                               " syntax highlight
+
+call vundle#end()                           " required
+filetype on
+filetype plugin on
 filetype plugin indent on
+set ttyfast                                 " terminal acceleration
+
+
+
+nmap <F9> :bprev<CR>
+nmap <F10> :bnext<CR>
+
+
+"=====================================================
+"" TagBar settings
+"=====================================================
+let g:tagbar_autofocus=0
+let g:tagbar_width=42
+autocmd BufEnter *.py :call tagbar#autoopen(0)
+autocmd BufWinLeave *.py :TagbarClose
+
+
+"filetype Bundle indent on
 
 " The rest of your config follows here
 
 map <F2> :NERDTreeToggle<CR>
 
 " Powerline setup
-set guifont=DejaVu\ Sans\ Mono
+set guifont=DejaVu\ Sans\ Mono\
 set laststatus=2
 
 " Documentation
@@ -65,7 +109,7 @@ set number
 " Change leader to a comma because the backslash is too far away
 " That means all \x commands turn into ,x
 " The mapleader has to be set before vundle starts loading all 
-" the plugins.
+" the Bundles.
 let mapleader=","
 
 "isier moving of code blocks
@@ -95,6 +139,83 @@ set relativenumber
 " Settings for jedi-vim
 " =====================
 let g:jedi#usages_command = "<leader>n"
-let g:jedi#popup_on_dot = 0
+let g:jedi#popup_on_dot = 1
 let g:jedi#popup_select_first = 0
 map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+
+
+let g:airline_powerline_fonts=1
+if !exists('g:airline_symbols')
+  let g:airline_symbols={}
+endif
+let g:airline_theme='dark'
+let g:airline#extensions#tabline#enabled=1
+set t_Co=256
+set linespace=0
+set encoding=utf-8
+colorscheme wombat256 
+
+" Auto check on save
+let g:pymode_lint_write = 1
+
+" Support virtualenv
+let g:pymode_virtualenv = 1
+
+" Enable breakpoints Bundle
+let g:pymode_breakpoint = 1
+let g:pymode_breakpoint_bind = '<leader>b'
+
+" syntax highlighting
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+let g:pymode_syntax_space_errors = g:pymode_syntax_all
+
+" Don't autofold code
+let g:pymode_folding = 0
+
+" Documentation
+let g:pymode_doc = 1
+let g:pymode_doc_key = 'K'
+
+
+
+"=====================================================
+"" AirLine settings
+"=====================================================
+let g:airline_theme='badwolf'
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#formatter='unique_tail'
+let g:airline_powerline_fonts=1
+
+" rope
+let g:pymode_rope=0
+let g:pymode_rope_completion=0
+let g:pymode_rope_complete_on_dot=0
+let g:pymode_rope_auto_project=0
+let g:pymode_rope_enable_autoimport=0
+let g:pymode_rope_autoimport_generate=0
+let g:pymode_rope_guess_project=0
+
+
+" documentation
+let g:pymode_doc=0
+let g:pymode_doc_key='K'
+
+" lints
+let g:pymode_lint=1
+let g:pymode_lint_checker='flake8,pep257'
+let g:pymode_lint_write=1                  " run lints after file save
+let g:pymode_lint_ignore=''                 " ignore lint errors
+
+" syntastic
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_enable_signs=1
+let g:syntastic_check_on_wq=0
+let g:syntastic_aggregate_errors=1
+let g:syntastic_error_symbol='X'
+let g:syntastic_style_error_symbol='X'
+let g:syntastic_warning_symbol='x'
+let g:syntastic_style_warning_symbol='x'
+let g:syntastic_python_checkers = ['flake8', 'pep257', 'python']
