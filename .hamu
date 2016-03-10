@@ -1,4 +1,5 @@
  "Molokai theme
+let mapleader=","
 let g:pymode_rope = 0
 set nocompatible
 filetype off
@@ -21,7 +22,7 @@ Bundle 'tpope/vim-commentary'
 Bundle 'jedi-vim'
 Bundle 'tomasr/molokai'
 "Bundle 'bling/vim-airline'
-Bundle 'msanders/snipmate.vim'
+"Bundle 'msanders/snipmate.vim'
 Bundle 'SirVer/ultisnips'
 "Bundle 'honza/vim-snippets'
 "Bundle 'musicbox.vim'
@@ -39,14 +40,11 @@ Bundle 'honza/vim-snippets'
 "Bundle 'Rykka/riv.vim'                      " ReStructuredText Bundle
 
 "-------------------=== Python  ===-----------------------------
-"Bundle 'klen/python-mode'                   " Python mode (docs, refactor, lints...)
-"Bundle 'davidhalter/jedi-vim'               " Jedi-vim autocomplete Bundle
-"Bundle 'mitsuhiko/vim-jinja'                " Jinja support for vim
 "Bundle 'mitsuhiko/vim-python-combined'      " Combined Python 2/3 for Vim
 "Bundle 'hynek/vim-python-pep8-indent'       " PEP8 indent
 "Bundle 'jmcantrell/vim-virtualenv'          " Virtualenv support in VIM
 
-
+let g:pymode_run_bind = '<leader>r'
 syntax enable                               " syntax highlight
 
 call vundle#end()                           " required
@@ -60,17 +58,18 @@ set ttyfast                                 " terminal acceleration
 nmap <F9> :bprev<CR>
 nmap <F10> :bnext<CR>
 
-
+:map ,t :w \|:! clear && tmux send-keys -t 0:0.2 C-z "python manage.py test" Enter <cr><cr>
 "=====================================================
 "" TagBar settings
 "=====================================================
 let g:tagbar_autofocus=0
-let g:tagbar_width=42
+let g:tagbar_width=20
 autocmd BufEnter *.py :call tagbar#autoopen(0)
 autocmd BufWinLeave *.py :TagbarClose
 
+let g:pymode_run = 1
 
-"filetype Bundle indent on
+"filetypeadd Bundle indent on
 
 " The rest of your config follows here
 
@@ -148,12 +147,12 @@ let g:airline_powerline_fonts=1
 if !exists('g:airline_symbols')
   let g:airline_symbols={}
 endif
-let g:airline_theme='dark'
+"let g:airline_theme='dark'
 let g:airline#extensions#tabline#enabled=1
 set t_Co=256
 set linespace=0
 set encoding=utf-8
-colorscheme wombat256 
+colorscheme mac_classic
 
 " Auto check on save
 let g:pymode_lint_write = 1
@@ -193,10 +192,11 @@ let g:pymode_rope=0
 let g:pymode_rope_completion=0
 let g:pymode_rope_complete_on_dot=0
 let g:pymode_rope_auto_project=0
-let g:pymode_rope_enable_autoimport=0
+let g:pymode_rope_enable_autoimport=1
 let g:pymode_rope_autoimport_generate=0
 let g:pymode_rope_guess_project=0
-
+let g:pymode_rope_autoimport_import_after_complete = 1
+let g:pymode_rope_autoimport_bind = '<C-c>ra'
 
 " documentation
 let g:pymode_doc=0
