@@ -1,5 +1,4 @@
- "Molokai theme
-let mapleader=","
+"let mapleader=","
 let g:pymode_rope = 0
 set nocompatible
 filetype off
@@ -10,6 +9,10 @@ call vundle#rc()
 " let Vundle manage Vundle
 " required! 
 Bundle 'gmarik/vundle'
+
+nnoremap <silent> <F5> :!clear;python3 %<CR>
+nnoremap <silent> <F4> :!clear;touch __init__.py;echo you have created a package <CR>
+nnoremap <silent> <F3> :!vimdev New <CR>
 
 " The bundles you install will be listed here
 Bundle 'klen/python-mode'
@@ -35,14 +38,18 @@ Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 Bundle 'honza/vim-snippets'
 "Bundle 'scrooloose/syntastic'               " Syntax checking Bundle for Vim
-"Bundle 'tpope/vim-commentary'               " Comment stuff out
-"Bundle 'mitsuhiko/vim-sparkup'              " Sparkup(XML/jinja/htlm-django/etc.) support
-"Bundle 'Rykka/riv.vim'                      " ReStructuredText Bundle
+"Bundle 'tpope/vim-commentary'               
+
+Bundle 'mitsuhiko/vim-sparkup'             
+Bundle 'Rykka/riv.vim'                     
 
 "-------------------=== Python  ===-----------------------------
 "Bundle 'mitsuhiko/vim-python-combined'      " Combined Python 2/3 for Vim
 "Bundle 'hynek/vim-python-pep8-indent'       " PEP8 indent
 "Bundle 'jmcantrell/vim-virtualenv'          " Virtualenv support in VIM
+
+set shortmess=a
+set cmdheight=2
 
 let g:pymode_run_bind = '<leader>r'
 syntax enable                               " syntax highlight
@@ -54,6 +61,7 @@ filetype plugin indent on
 set ttyfast                                 " terminal acceleration
 
 
+set autoread
 
 nmap <F9> :bprev<CR>
 nmap <F10> :bnext<CR>
@@ -62,10 +70,10 @@ nmap <F10> :bnext<CR>
 "=====================================================
 "" TagBar settings
 "=====================================================
-let g:tagbar_autofocus=0
-let g:tagbar_width=20
-autocmd BufEnter *.py :call tagbar#autoopen(0)
-autocmd BufWinLeave *.py :TagbarClose
+" let g:tagbar_autofocus=0
+" let g:tagbar_width=20
+" autocmd BufEnter *.py :call tagbar#autoopen(0)
+" autocmd BufWinLeave *.py :TagbarClose
 
 let g:pymode_run = 1
 
@@ -138,8 +146,8 @@ set relativenumber
 " Settings for jedi-vim
 " =====================
 let g:jedi#usages_command = "<leader>n"
-let g:jedi#popup_on_dot = 1
-let g:jedi#popup_select_first = 0
+let g:jedi#popup_on_dot = 1 
+let g:jedi#popup_select_first = 1
 map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
 
@@ -152,7 +160,7 @@ let g:airline#extensions#tabline#enabled=1
 set t_Co=256
 set linespace=0
 set encoding=utf-8
-colorscheme mac_classic
+colorscheme basic
 
 " Auto check on save
 let g:pymode_lint_write = 1
@@ -182,7 +190,7 @@ let g:pymode_doc_key = 'K'
 "=====================================================
 "" AirLine settings
 "=====================================================
-let g:airline_theme='badwolf'
+" let g:airline_theme='badwolf'
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline_powerline_fonts=1
