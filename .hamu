@@ -76,6 +76,7 @@ nmap <F10> :bnext<CR>
 " autocmd BufWinLeave *.py :TagbarClose
 
 let g:pymode_run = 1
+let g:pymode_lint_on_fly = 0
 
 "filetypeadd Bundle indent on
 
@@ -160,7 +161,8 @@ let g:airline#extensions#tabline#enabled=1
 set t_Co=256
 set linespace=0
 set encoding=utf-8
-colorscheme basic
+"colorscheme mohammad
+colorscheme wombat256
 
 " Auto check on save
 let g:pymode_lint_write = 1

@@ -1,0 +1,1 @@
+/home/hamub/.vim/.hamu
