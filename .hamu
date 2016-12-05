@@ -3,7 +3,7 @@ let g:pymode_rope = 0
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/dotfiles/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
