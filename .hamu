@@ -13,8 +13,11 @@ Bundle 'gmarik/vundle'
 nnoremap <silent> <F5> :!clear;python3 %<CR>
 nnoremap <silent> <F4> :!clear;touch __init__.py;echo you have created a package <CR>
 nnoremap <silent> <F3> :!vimdev New <CR>
+nnoremap <silent> <F6> :!clear && py.test *.py <CR>
+nnoremap <silent> <F7> :!clear &&  python -m unittest *.py <CR>
 
 " The bundles you install will be listed here
+Bundle 'tpope/vim-repeat'
 Bundle 'klen/python-mode'
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'scrooloose/nerdtree'
@@ -24,25 +27,25 @@ Bundle 'vimux'
 Bundle 'tpope/vim-commentary'
 Bundle 'jedi-vim'
 Bundle 'tomasr/molokai'
-"Bundle 'bling/vim-airline'
+Bundle 'bling/vim-airline'
 "Bundle 'msanders/snipmate.vim'
 Bundle 'SirVer/ultisnips'
-"Bundle 'honza/vim-snippets'
+"Bundle 'vim-snippets'
 "Bundle 'musicbox.vim'
-Bundle 'bling/vim-airline'
+"Bundle 'bling/vim-airline'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'majutsushi/tagbar'
 Bundle 'tpope/vim-surround' 
-Bundle  'garbas/vim-snipmate'
+"Bundle  'garbas/vim-snipmate'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 Bundle 'honza/vim-snippets'
 "Bundle 'scrooloose/syntastic'               " Syntax checking Bundle for Vim
 "Bundle 'tpope/vim-commentary'               
-
+"Bundle 'cjrh/vim-conda'
 Bundle 'mitsuhiko/vim-sparkup'             
 Bundle 'Rykka/riv.vim'                     
-
+"Bundle 'benmills/vimux'
 "-------------------=== Python  ===-----------------------------
 "Bundle 'mitsuhiko/vim-python-combined'      " Combined Python 2/3 for Vim
 "Bundle 'hynek/vim-python-pep8-indent'       " PEP8 indent
@@ -60,13 +63,18 @@ filetype plugin on
 filetype plugin indent on
 set ttyfast                                 " terminal acceleration
 
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsListSnippets="<c-l>"
+
 
 set autoread
 
 nmap <F9> :bprev<CR>
 nmap <F10> :bnext<CR>
 
-:map ,t :w \|:! clear && tmux send-keys -t 0:0.2 C-z "python manage.py test" Enter <cr><cr>
+:map ,t :w \|:! clear && tmux send-keys -t 0:0.2 C-z " python manage.py test" Enter <cr><cr>
 "=====================================================
 "" TagBar settings
 "=====================================================
@@ -76,7 +84,7 @@ nmap <F10> :bnext<CR>
 " autocmd BufWinLeave *.py :TagbarClose
 
 let g:pymode_run = 1
-let g:pymode_lint_on_fly = 0
+let g:pymode_lint_on_fly = 1 
 
 "filetypeadd Bundle indent on
 
@@ -152,6 +160,7 @@ let g:jedi#popup_select_first = 1
 map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
 
+
 let g:airline_powerline_fonts=1
 if !exists('g:airline_symbols')
   let g:airline_symbols={}
@@ -162,7 +171,7 @@ set t_Co=256
 set linespace=0
 set encoding=utf-8
 "colorscheme mohammad
-colorscheme wombat256
+"colorscheme wombat256
 
 " Auto check on save
 let g:pymode_lint_write = 1
@@ -199,7 +208,7 @@ let g:airline_powerline_fonts=1
 
 " rope
 let g:pymode_rope=0
-let g:pymode_rope_completion=0
+let g:pymode_rope_completion= 1
 let g:pymode_rope_complete_on_dot=0
 let g:pymode_rope_auto_project=0
 let g:pymode_rope_enable_autoimport=1
