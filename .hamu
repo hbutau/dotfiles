@@ -1,5 +1,5 @@
 "let mapleader=","
-let g:pymode_rope = 0
+let g:pymode_rope = 0 
 set nocompatible
 filetype off
 
@@ -83,7 +83,7 @@ nmap <F10> :bnext<CR>
 " autocmd BufEnter *.py :call tagbar#autoopen(0)
 " autocmd BufWinLeave *.py :TagbarClose
 
-let g:pymode_run = 1
+let g:pymode_run = 1 
 let g:pymode_lint_on_fly = 1 
 
 "filetypeadd Bundle indent on
@@ -157,6 +157,8 @@ set relativenumber
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#popup_on_dot = 1 
 let g:jedi#popup_select_first = 1
+let g:jedi#auto_initialization = 1 
+
 map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
 
@@ -207,8 +209,8 @@ let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline_powerline_fonts=1
 
 " rope
-let g:pymode_rope=0
-let g:pymode_rope_completion= 1
+let g:pymode_rope= 0
+let g:pymode_rope_completion= 0
 let g:pymode_rope_complete_on_dot=0
 let g:pymode_rope_auto_project=0
 let g:pymode_rope_enable_autoimport=1
